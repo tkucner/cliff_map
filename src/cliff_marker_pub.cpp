@@ -10,11 +10,9 @@
 #include <string>
 #include <tf/transform_datatypes.h>
 
-class CSVRow
-{
+class CSVRow{
 public:
-        std::string const& operator[](std::size_t index) const
-                {
+        std::string const& operator[](std::size_t index) const{
                         return m_data[index];
                 }
         std::size_t size() const
@@ -56,19 +54,24 @@ std::istream& operator>>(std::istream& str, CSVRow& data)
 int main(int argc, char **argv){
         ros::init(argc, argv, "cliff_marker_pub");
         ros::NodeHandle n;
+        ros::NodeHandle param("~");;
+        std::string mapFile;
 
+        param.param<std::string>("map_file", mapFile, "map.csv");
         ros::Publisher cliff_pub = n.advertise<visualization_msgs::MarkerArray>("cliff_marker_pub", 1000);
         ros::Rate loop_rate(10);
+        ROS_INFO_STREAM(mapFile);
 
 
 
-        std::ifstream file("/home/tzkr/matlab_workspace/cs_toolbox/cs_toolbox_timless/map_ILIAD.csv");
+        std::ifstream file(mapFile.c_str());
         CSVRow row;
         std::vector<CSVRow> rows;
         while(file >> row)
         {
                 rows.push_back(row);
         }
+
 
 
 

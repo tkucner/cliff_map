@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- run dual-laser localisation -->
+   <node name="cliff_publisher" pkg="cliff_map" type="cliff_marker_pub" output="screen">
+         <param name="map_file" value="$(find cliff_map)/maps/map_ILIAD.csv" />
+  </node>
+
+  
+</launch>
