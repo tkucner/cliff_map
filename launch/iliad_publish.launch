@@ -2,7 +2,8 @@
 <launch>
     <!-- run dual-laser localisation -->
    <node name="cliff_publisher" pkg="cliff_map" type="cliff_marker_pub" output="screen">
-         <param name="map_file" value="$(find cliff_map)/map/map_ILIAD.csv" />
+     <!-- param name="map_file" value="$(find cliff_map)/map/map_ILIAD.csv" / -->
+     <param name="map_file" value="$(find cliff_map)/map/map_ped.csv" />
   </node>
 
   
